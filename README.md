@@ -55,7 +55,10 @@ sudo certbot --nginx -d domainname.com
 sudo certbot renew --dry-runsudo certbot renew --dry-run 
 ### nginx
 sudo apt-get install nginx -y
+
 sudo nano /etc/nginx/sites-available/default
+
+-------------------------------------------------
 ```javascript
 # Virtual Host configuration for example.com
 #
@@ -117,6 +120,8 @@ server {
   }
 }
 ```
+-------------------------------------------------------------
+
 Other important commands:
 
 sudo ufw status 
