@@ -22,7 +22,97 @@ A big gratitude to [Haim Lankry](https://github.com/haimlankry) for guiding and 
 
 
 ## Server
+I'm developing on Linux Ubuntu 16.04
+postgres sql [instalation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
+create db: sudo -u postgres createdb pgmem. 
+config knexfile.js (user and pass). 
+npm install. 
+npm run knex migrate:latest. 
+npm run dev. 
 
 ## Client
+npm install. 
+npm run dev. 
+
+because i'm running both project on same localhost machine, it is nessesary to open two instance of node.js, and run each on a different port, there for the client code must be modify [here](https://github.com/yanivduke/vue-auth-skeleton/blob/8ef69f71cf0d05671528660036989686d375d13a/client/src/store/modules/auth.js#L18).
+
+# Production 
+npm run build, and then copy the file to /home/ubuntu/example/dist/
+### SSL
+sudo apt-get install python-certbot-nginx 
+add-apt-repository ppa:certbot/certbot 
+sudo certbot --nginx -d domainname.com 
+sudo certbot renew --dry-runsudo certbot renew --dry-run 
+### nginx
+sudo apt-get install nginx -y
+sudo nano /etc/nginx/sites-available/default
+```javascript
+# Virtual Host configuration for example.com
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+#
+server {
+	listen 80;
+	listen [::]:80;
+	server_name example.com;
+	location / {
+		return 301 https://example.com$request_uri;
+	}
+}
+
+server {
+	server_name example.com;
+	listen 443 ssl http2 default_server;
+	listen [::]:443 ssl http2 default_server ipv6only=on;
+
+	ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+#	include /etc/nginx/snippets/ssl.conf;
+
+	location /dev {
+          proxy_pass http://localhost:3000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+
+	location /api {
+	  proxy_pass http://localhost:3001;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;	
+	}
+
+	location / {
+	  alias /home/ubuntu/example/dist/;
+          index index.html;
+	  try_files $uri $uri/ index.html =404;
+	  expires max;
+          add_header Pragma public;
+          add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+	}
+
+  location service-worker.js {
+    add_header Last-Modified $date_gmt;
+    add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+    if_modified_since off;
+       expires off;
+       etag off;
+  }
+}
+```
+Other important commands:
+sudo ufw status
+sudo ufw allow 'Nginx HTTP' 
+sudo ufw deny {portnum}
+sudo nginx -t
+sudo systemctl restart nginx
+systemctl status nginx
 
 
