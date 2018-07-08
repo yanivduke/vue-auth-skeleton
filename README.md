@@ -23,8 +23,8 @@ A big gratitude to [Haim Lankry](https://github.com/haimlankry) for guiding and 
 
 ## Server
 I'm developing on Linux Ubuntu 16.04
-postgres sql [instalation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
-create db: sudo -u postgres createdb pgmem. 
+	postgres sql [instalation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
+ create db: sudo -u postgres createdb pgmem. 
 config knexfile.js (user and pass). 
 npm install. 
 npm run knex migrate:latest. 
