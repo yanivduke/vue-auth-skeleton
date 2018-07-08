@@ -1,9 +1,9 @@
-## vue-auth-skeleton
+# vue-auth-skeleton
 
-# Server - JWT implementation using KNEX and Express on Node.js
-# Client - Vue.js using Vue-router, Vuex and Axios
+## Server - JWT implementation using KNEX and Express on Node.js
+## Client - Vue.js using Vue-router, Vuex and Axios
 
-## ;TLDR 
+# ;TLDR 
 This project is a side product of testing and examining my next fullstuck environment, programing language... for web application development.
 
 After meny years of using Microsoft Visual Studio, coding c#, asp.net for IIS & MS-SQL on windows machines, I'm looking for an open-source solution.
@@ -21,13 +21,13 @@ Since then, more and more open source libraries take significant part on both cl
 This project architecture is a Single Page Web Application, that makes Http json/bson request to REST APIs from different sources, some public and some Token based - the SPA layout loads only one time, and content change by replacing only the data inside the selected layout commponent, driven by a callback response or user action.
 A big gratitude to [Haim Lankry](https://github.com/haimlankry) for guiding and supporting my C# => JavaScript transformation.
 
-## Instaltions
+# Instaltions
 
 
-# Server
+## Server
 
 
 
-# Client
+## Client
 
 
