@@ -118,6 +118,7 @@ server {
 }
 ```
 Other important commands:
+
 sudo ufw status 
 
 sudo ufw allow 'Nginx HTTP' 
