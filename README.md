@@ -1,8 +1,6 @@
 # vue-auth-skeleton
-
-## Server - JWT implementation using KNEX and Express on Node.js
-## Client - Vue.js using Vue-router, Vuex and Axios
-
+Server - JWT implementation using KNEX and Express on Node.js
+Client - Vue.js using Vue-router, Vuex and Axios
 # ;TLDR 
 This project is a side product of testing and examining my next fullstuck environment, programing language... for web application development.
 
