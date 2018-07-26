@@ -15,8 +15,8 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit(AUTH_REQUEST)
 
-      //axios.post('http://localhost:3001/api/authenticate', user, config)
-      axios.post('/api/authenticate', user, config)
+      axios.post('http://localhost:3001/api/authenticate', user, config)
+      //axios.post('/api/authenticate', user, config)
       .then(resp => {
         localStorage.setItem('auth-user-token', resp.data.data.token)
         axios.defaults.headers.common['bearer'] = localStorage.getItem('auth-user-token')
