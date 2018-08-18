@@ -25,27 +25,6 @@
     </v-content>
   </v-app>
 </template>
-<!--
-<template>
-  <div>
-    Login
-    <form class="login" @submit.prevent="login">
-      <h1>Sign in</h1>
-      <label>User name</label>
-      <input v-model="username" type="text"/>
-      <label>Password</label>
-      <input v-model="password" type="password"/>
-      <hr/>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-</template>
--->
-
-
-<style>
-
-</style>
 
 <script>
   import {AUTH_REQUEST} from '../store/actions/auth'
@@ -61,10 +40,9 @@
     methods: {
       login: function () {
         const { username, password } = this
-        console.log("usser" + username)
         this.$store.dispatch(AUTH_REQUEST, { username, password }
         ).then(() => {
-          this.$router.push({ name: 'Main' })
+          this.$router.push({ name: 'users' })
         }).catch(function(e) {
           console.log(e);
         })

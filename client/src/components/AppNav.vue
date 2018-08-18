@@ -5,23 +5,14 @@
     height="200px"
   >
     <v-toolbar color="grey darken-1" dark>
-      <v-hamburger
-        :stroke='2'
-        :gap='5'
-        color='#192a35'
-        :open.sync='open'>
-      </v-hamburger>
-
+      <v-toolbar-side-icon @click="OpenSideNav"></v-toolbar-side-icon>
       <v-spacer></v-spacer>
-
       <v-btn icon>
         <v-icon>search</v-icon>
       </v-btn>
-
       <v-btn icon>
         <v-icon>favorite</v-icon>
       </v-btn>
-
       <v-spacer></v-spacer>
       <v-menu :nudge-width="100">
         <v-toolbar-title slot="activator">
@@ -49,8 +40,6 @@
 <script>
 
 import store from '../store'
-import 'vue-hamburger/index.css'
-import hamburger from 'vue-hamburger'
 
 export default {
 
@@ -58,19 +47,27 @@ export default {
   
   data() {
     return {
-      open: false,
+      open: true,
       items: [
         'All', 'משתמשים', 'קבוצות', 'משימות'
       ],
       msg: ""
     };
   },
-  components: {'v-hamburger': hamburger},
+  components: {},
   computed: {
     isLoggedin() {
       return store.getters.isAuthenticated
     },
   },
+  methods: {
+
+    OpenSideNav(){
+      console.log("clicked humburger");
+      this.open = true
+      this.$emit('clicked-open-side-nav');
+    }
+  }
 };
 </script>
 

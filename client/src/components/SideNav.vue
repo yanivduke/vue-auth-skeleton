@@ -1,14 +1,14 @@
 <template>
 
-  <v-navigation-drawer
+  <v-navigation-drawer right app
     v-model="drawer"
   >
     <v-list>
       <v-list-tile>
-        <v-list-tile-action>
-          <v-icon>home</v-icon>
+        <v-list-tile-action @click="Close">
+          <v-icon>close</v-icon>
         </v-list-tile-action>
-        <v-list-tile-title>Home</v-list-tile-title>
+        <v-list-tile-title>תפריט</v-list-tile-title>
       </v-list-tile>
 
       <v-list-group
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+
   export default {
     data: () => ({
       drawer: true,
@@ -78,6 +79,15 @@
         ['Update', 'update'],
         ['Delete', 'delete']
       ]
-    })
+    }),
+    methods: {
+      Open() {
+        this.drawer = true;
+      },
+      Close() {
+        this.drawer = false;
+      }
+    },
+  
   }
 </script>

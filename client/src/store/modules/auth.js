@@ -3,11 +3,11 @@ import { AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT } from '../actions/
 import axios from 'axios'
 var config = {};
 
-const state = { token: localStorage.getItem('auth-user-token') || '', status: '', hasLoadedOnce: false }
+const state = { token: localStorage.getItem('auth-user-token') || '', status: '', hasLoadedOnce: false  }
 
 const getters = {
   isAuthenticated: state => !!state.token,
-  authStatus: state => state.status
+  authStatus: state => state.status,
 }
 
 const actions = {
@@ -19,7 +19,6 @@ const actions = {
       //axios.post('/api/authenticate', user, config)
       .then(resp => {
         localStorage.setItem('auth-user-token', resp.data.data.token)
-        axios.defaults.headers.common['bearer'] = localStorage.getItem('auth-user-token')
         commit(AUTH_SUCCESS, resp.data.data)
         resolve(resp.data.data)
       })

@@ -15,7 +15,7 @@
     "vue": "^2.5.2",
     "vue-hamburger": "^0.1.2",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.1.4",
+    "vuetify": "^1.1.8",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
