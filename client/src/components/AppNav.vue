@@ -63,7 +63,6 @@ export default {
   methods: {
 
     OpenSideNav(){
-      console.log("clicked humburger");
       this.open = true
       this.$emit('clicked-open-side-nav');
     }
