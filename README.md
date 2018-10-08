@@ -16,7 +16,7 @@ But the basic architecture did not chage, Microsoft ASP.NET (web forms) was stil
 Since then, more and more open source libraries took significant part on both client and server side and Microsoft release MVC and other open source inspired or combind starter-kits and good solutions like web api.
 
 This project architecture is a Single Page Web Application, that makes Http json request to REST APIs from different sources, some public and some Token based - the SPA layout loads only one time, and content change by replacing only the data inside the selected layout commponent, driven by a callback response or user action.
-A big gratitude to [Haim Lankry](https://github.com/haimlankry) for guiding and supporting my C# => JavaScript transformation.
+A big gratitude to [Haim Lankry](https://github.com/haimlankry) for guiding and supporting my (C#) => {JavaScript} transformation.
 
 # Install
 
