@@ -2,35 +2,42 @@
 require('dotenv').load();
 
 const express = require('express');
-const mailer = require('express-mailer');
+const nodemailer = require('nodemailer');
 const router = express.Router();
 
-mailer.extend(express, {
-    from: 'duke.web.dev@gmail.com',
-    host: 'smtp.gmail.com', // hostname
-    secureConnection: true, // use SSL
-    port: 465, // port for secure SMTP
-    transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
-    auth: {
-      user: 'duke.web.dev@gmail.com',
-      pass: 'aaAA11!!'
-    }
-  });
-// post /register 
+
+// post /sendmail 
 router.post('/', async function(req, res) {
-    express.mailer.send('email', {
-    to: 'duke.web.dev@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field. 
-    subject: 'Call request from DukeCode By: ' + req.body.data.name, // REQUIRED.
-    //otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables.
-    }, function (err) {
-    if (err) {
-        // handle error
-        console.log(err);
-        res.send('There was an error sending the email');
-        return;
-    }
-    res.send('Email Sent');
+    console.log("body is: " + JSON.stringify(req.body))
+    console.log("params are: "+JSON.stringify(req.body.name))
+
+    var text = req.body.name;
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'duke.web.dev@gmail.com', // Your email id
+            pass: 'aaAA11!!' // Your password
+        }
     });
-})
+    
+    var mailOptions = {
+        from: 'duke.web.dev@gmail.com', // sender address
+        to: 'duke.web.dev@gmail.com', // list of receivers
+        subject: 'DukeCode Call message from: ' + req.body.name, // Subject line
+        //text: text //, // plaintext body
+        html: '<b>return to:</b>&nbsp; - ' + req.body.email + '<br /><b>message:</b><br />' + text // You can choose to send an HTML body instead
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            res.json({yo: 'error'});
+        }else{
+            console.log('Message sent: ' + info.response);
+            res.json({yo: info.response});
+        };
+    });
+    
+});
 
 module.exports = router
