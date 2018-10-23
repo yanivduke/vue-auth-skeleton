@@ -7,12 +7,13 @@ var authorize = require('./authorize');
 var users = require('./users');
 var authentication_route = require('./authentication');
 var register = require('./register');
+var send_mail = require('./send_mail');
 var env = process.env.NODE_ENV || 'development';
 
 router.get('/api', function(req, res) {
   res.status(200).send('Hello API!');
 });
-
+router.use('/api/sendmail' , send_mail)
 router.use('/api/authenticate' , authentication_route)
 router.use('/api/register' , register)
 
