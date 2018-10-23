@@ -1,32 +1,31 @@
 <template>
-  <div id="app">
-    <v-flex-container direction="column">
-      <v-header></v-header>
-      <v-app-nav v-if="isLoggedin"></v-app-nav>
+  <v-app>
+    <v-app-nav @clicked-open-side-nav=OpenSideNav></v-app-nav>
+    <v-layout row>
+      
+      <v-side-nav ref="nav"></v-side-nav>
+      <button @click="OpenSideNav">test</button>
       <div>
         <router-view></router-view>
       </div>
-      <v-footer></v-footer>
-    </v-flex-container>
-  </div>
+    </v-layout>
+  </v-app>
 </template>
 
 <script>
-import FlexContainer from "./components/FlexContainer";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import AppNav from "./components/AppNav";
-
+import SideNav from "./components/SideNav";
 import store from './store'
 
 export default {
   name: "App",
+  data: () => ({
+    drawer: true,
+      
+  }),
   components: {
-    "v-flex-container": FlexContainer,
-    "v-footer": Footer,
     "v-app-nav":AppNav,
-    "v-header": Header,
-
+    "v-side-nav":SideNav,
   },
   computed: {
     isLoggedin() {
@@ -34,11 +33,23 @@ export default {
     },
     comp2() {}
   },
+  methods:
+  {
+    OpenSideNav() {
+      this.$refs.nav.Open();
+    },
+    CloseSideNav() {
+      this.SideNav.Close();
+    }
+  },
+  watch: {
+    drawer:function() {
+      this.OpenSideNav();
+    },
+  },
 };
 </script>
 
 <style>
-#app {
-  display: flex;
-}
+
 </style>

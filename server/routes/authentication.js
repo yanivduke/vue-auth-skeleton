@@ -8,6 +8,10 @@ const helpers = require('../misc/helpers');
 
 // post /authenticate 
 router.post('/' , function(req, res){
+    //console.log("body is: " + JSON.stringify(req.body))
+    //console.log("params are: "+JSON.stringify(req.body.username))
+    //console.log("body is: " + req.body)
+
     knex.from('authusers')
         .where('authusers.user_id', req.body.username)
         .andWhere('is_approved', 'true')

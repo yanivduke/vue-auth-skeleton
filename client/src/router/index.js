@@ -16,18 +16,14 @@ const ifNotAuthenticated = (to, from, next) => {
     next()
     return
   }
-  console.log("after ifNotAuthenticated")
   next('/')
 }
 
 const ifAuthenticated = (to, from, next) => {
-  console.log("ifAuthenticated")
   if (store.getters.isAuthenticated) {
-    console.log("in ifAuthenticated")
     next()
     return
   }
-  console.log("after ifAuthenticated")
   next('/login')
   //document.location = '/login'
 }
