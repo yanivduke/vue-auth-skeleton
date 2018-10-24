@@ -11,12 +11,12 @@ router.post('/', async function(req, res) {
     console.log("body is: " + JSON.stringify(req.body))
     console.log("params are: "+JSON.stringify(req.body.name))
 
-    var text = req.body.name;
+    var text = req.body.message;
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'duke.web.dev@gmail.com', // Your email id
-            pass: 'aaAA11!!' // Your password
+            user: process.env.MAIL_SENDER_USERNAME, // Your email id
+            pass: process.env.MAIL_SENDER_PASSWORD // Your password
         }
     });
     
