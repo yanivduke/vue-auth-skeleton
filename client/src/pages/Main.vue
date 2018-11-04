@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {USERS_SEARCH_REQUEST} from '../store/actions/users'
 export default {
   name: 'component-name',
   props: {
@@ -44,7 +45,13 @@ export default {
 
   },
   created() {
-
+    console.log("main created"); 
+    this.$store.dispatch(USERS_SEARCH_REQUEST)
+    .then(() => {
+      console.log("rows fatched from main preload mechanism"); 
+    }).catch(function(e) {
+      console.log(e);
+    })
   },
   beforeMount() {
 

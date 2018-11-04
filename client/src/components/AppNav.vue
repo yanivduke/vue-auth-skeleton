@@ -1,12 +1,12 @@
 <template>
   <v-card
+    right
     color="grey lighten-4"
     flat
-    height="200px"
+    height="160px" 
   >
     <v-toolbar color="grey darken-1" dark>
       <v-toolbar-side-icon @click="OpenSideNav"></v-toolbar-side-icon>
-      <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>search</v-icon>
       </v-btn>
@@ -61,7 +61,6 @@ export default {
     },
   },
   methods: {
-
     OpenSideNav(){
       this.open = true
       this.$emit('clicked-open-side-nav');

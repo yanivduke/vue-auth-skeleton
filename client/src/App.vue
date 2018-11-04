@@ -2,12 +2,14 @@
   <v-app>
     <v-app-nav @clicked-open-side-nav=OpenSideNav></v-app-nav>
     <v-layout row>
-      
       <v-side-nav ref="nav"></v-side-nav>
-      <button @click="OpenSideNav">test</button>
-      <div>
-        <router-view></router-view>
-      </div>
+      <v-content>
+        <v-container fluid fill-height class="grey lighten-4">
+          <v-layout justify-center align-center>
+            <router-view></router-view>
+          </v-layout>
+        </v-container>
+      </v-content>
     </v-layout>
   </v-app>
 </template>
@@ -29,9 +31,10 @@ export default {
   },
   computed: {
     isLoggedin() {
-      return store.getters.isAuthenticated
+      
+      return store.getters.isAuthenticated 
     },
-    comp2() {}
+    
   },
   methods:
   {

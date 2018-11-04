@@ -1,65 +1,59 @@
 <template>
-
-  <v-navigation-drawer right app
+  
+  <v-navigation-drawer right
+    fixed
+    clipped
+    class="grey lighten-4"
+    app
     v-model="drawer"
   >
-    <v-list>
-      <v-list-tile>
-        <v-list-tile-action @click="Close">
-          <v-icon>close</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title>תפריט</v-list-tile-title>
-      </v-list-tile>
-
-      <v-list-group
-        prepend-icon="account_circle"
-        value="true"
-      >
-        <v-list-tile slot="activator">
-          <v-list-tile-title>Users</v-list-tile-title>
+    <v-list-tile>
+      <v-list-tile-action @click="Close">
+        <v-icon>close</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-title>תפריט</v-list-tile-title>
+    </v-list-tile>
+    <v-list
+      dense
+      class="grey lighten-4"
+    >
+      <template v-for="(item, i) in items">
+        <v-layout
+          row
+          v-if="item.heading"
+          align-center
+          :key="i"
+        >
+          <v-flex xs6>
+            <v-subheader v-if="item.heading">
+              {{ item.heading }}
+            </v-subheader>
+          </v-flex>
+          <v-flex xs6 class="text-xs-right">
+            <v-btn small flat>edit</v-btn>
+          </v-flex>
+        </v-layout>
+        <v-divider
+          dark
+          v-else-if="item.divider"
+          class="my-3"
+          :key="i"
+        ></v-divider>
+        <v-list-tile
+          :key="i"
+          v-else
+          @click=""
+        >
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title class="grey--text">
+              {{ item.text }}
+            </v-list-tile-title>
+          </v-list-tile-content>
         </v-list-tile>
-
-        <v-list-group
-          no-action
-          sub-group
-          value="true"
-        >
-          <v-list-tile slot="activator">
-            <v-list-tile-title>Admin</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile
-            v-for="(admin, i) in admins"
-            :key="i"
-            @click=""
-          >
-            <v-list-tile-title v-text="admin[0]"></v-list-tile-title>
-            <v-list-tile-action>
-              <v-icon v-text="admin[1]"></v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-        </v-list-group>
-
-        <v-list-group
-          sub-group
-          no-action
-        >
-          <v-list-tile slot="activator">
-            <v-list-tile-title>Actions</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile
-            v-for="(crud, i) in cruds"
-            :key="i"
-            @click=""
-          >
-            <v-list-tile-title v-text="crud[0]"></v-list-tile-title>
-            <v-list-tile-action>
-              <v-icon v-text="crud[1]"></v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-        </v-list-group>
-      </v-list-group>
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -68,16 +62,22 @@
 
   export default {
     data: () => ({
-      drawer: true,
-      admins: [
-        ['Management', 'people_outline'],
-        ['Settings', 'settings']
-      ],
-      cruds: [
-        ['Create', 'add'],
-        ['Read', 'insert_drive_file'],
-        ['Update', 'update'],
-        ['Delete', 'delete']
+      drawer: null,
+      items: [
+        { icon: 'lightbulb_outline', text: 'Notes' },
+        { icon: 'touch_app', text: 'Reminders' },
+        { divider: true },
+        { heading: 'Labels' },
+        { icon: 'add', text: 'Create new label' },
+        { divider: true },
+        { icon: 'archive', text: 'Archive' },
+        { icon: 'delete', text: 'Trash' },
+        { divider: true },
+        { icon: 'settings', text: 'Settings' },
+        { icon: 'chat_bubble', text: 'Trash' },
+        { icon: 'help', text: 'Help' },
+        { icon: 'phonelink', text: 'App downloads' },
+        { icon: 'keyboard', text: 'Keyboard shortcuts' }
       ]
     }),
     methods: {
@@ -91,3 +91,4 @@
   
   }
 </script>
+
