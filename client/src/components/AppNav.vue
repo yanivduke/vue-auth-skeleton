@@ -3,7 +3,7 @@
     right
     color="grey lighten-4"
     flat
-    height="160px" 
+    height="120px" 
   >
     <v-toolbar color="grey darken-1" dark>
       <v-toolbar-side-icon @click="OpenSideNav"></v-toolbar-side-icon>

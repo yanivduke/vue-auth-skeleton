@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.5a7b91587db23aa702acf1be5c741529.js", "https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
+importScripts("/precache-manifest.20af0092b6eefc6390c13dec1daf0c52.js", "https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
 
 console.log("my service worker")
 
@@ -6,13 +6,6 @@ importScripts('/js/idb.js');
 
 workbox.skipWaiting();
 workbox.clientsClaim();
-
-// temporary workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=823392
-self.addEventListener('fetch', (e) => {
-  if (e.request.cache === 'only-if-cached' && e.request.mode !== 'same-origin') {
-    return;
-  }
-})
 
 self.addEventListener('message', (event) => {
   if (!event.data){
@@ -44,7 +37,7 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
-  /\.(?:js|css)$/,
+  /\.(?:js|css|json)$/,
   workbox.strategies.cacheFirst({
     cacheName: 'static',
     plugins: [
@@ -56,8 +49,8 @@ workbox.routing.registerRoute(
   }),
 );
 
-workbox.routing.registerRoute(
-  new RegExp('/'),
+workbox.routing.registerNavigationRoute(
+  '/index.html',
   workbox.strategies.cacheFirst({
     cacheName: 'html',
     plugins: [

@@ -58,3 +58,4 @@ typings/
 .env
 .knexfile.js
 knexfile.js
+dist/

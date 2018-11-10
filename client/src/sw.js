@@ -5,13 +5,6 @@ importScripts('/js/idb.js');
 workbox.skipWaiting();
 workbox.clientsClaim();
 
-// temporary workaround for https://bugs.chromium.org/p/chromium/issues/detail?id=823392
-self.addEventListener('fetch', (e) => {
-  if (e.request.cache === 'only-if-cached' && e.request.mode !== 'same-origin') {
-    return;
-  }
-})
-
 self.addEventListener('message', (event) => {
   if (!event.data){
     return;
@@ -42,7 +35,7 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
-  /\.(?:js|css)$/,
+  /\.(?:js|css|json)$/,
   workbox.strategies.cacheFirst({
     cacheName: 'static',
     plugins: [
@@ -54,8 +47,8 @@ workbox.routing.registerRoute(
   }),
 );
 
-workbox.routing.registerRoute(
-  new RegExp('/'),
+workbox.routing.registerNavigationRoute(
+  '/index.html',
   workbox.strategies.cacheFirst({
     cacheName: 'html',
     plugins: [

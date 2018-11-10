@@ -29,6 +29,7 @@ import {
   VMenu,
   VDivider,
   VDataTable,
+  VSubheader,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -63,6 +64,7 @@ Vue.use(Vuetify, {rtl: true,
     "v-menu": VMenu,
     "v-divider": VDivider,
     "v-data-table": VDataTable,
+    "v-subheader": VSubheader,
     transitions
   },
   theme: {
