@@ -1,7 +1,7 @@
 # VUE-AUTH-SKELETON
 This project is a side product of testing and examining my next fullstuck environment, programing language... for web application development
 #### Server - JWT implementation using KNEX and Express on Node.js
-#### Client - Vue.js using Vue-router, Vuex and Axios
+#### Client - Vue.js using Vue-router, Vuex and Workbox for PWA
 ## ;TLDR
 After many years of using Microsoft Visual Studio, coding c#, asp.net for IIS & MS-SQL on windows machines, I'm looking for an open-source solution.
 I decided that my next fullstuck template will be node.js based.
